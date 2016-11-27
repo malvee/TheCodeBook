@@ -1,6 +1,5 @@
 import math
 def encrypt(x):
-    print(len(x))
     newstr = ""
     for i in range(int(math.ceil(len(x)/2))):
             newstr += str(x[i*2])
@@ -23,4 +22,17 @@ def decrypt(x):
     if len(x) % 2 != 0:
         newstr += x[int(math.floor(len(x)/2))]
     return newstr
-print(decrypt("hloSmnSnh hnsaltfrraigti!!el io ig,tak  o o edn hs!"))
+def xencrypt(x, n):
+    n = n % (len(x) - 1)
+    for i in range(n):
+        x = encrypt(x)
+    return x
+    
+def xdecrypt(x, n):
+    n = n % (len(x) - 1)
+    for i in range(n):
+        x = decrypt(x)
+    return x
+
+print(xdecrypt(xencrypt("albert heijn", 15), 15))
+
